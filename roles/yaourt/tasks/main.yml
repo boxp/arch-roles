@@ -1,0 +1,16 @@
+---
+
+- name: "Add archlinuxfr repository for pacman"
+  lineinfile:
+    dest: "/etc/pacman.conf"
+    state: "present"
+    line: "{{ item }}"
+  withitems:
+    - "[archlinuxfr]"
+    - "SigLevel = Never"
+    - "Server = http://repo.archlinux.fr/$arch"
+
+- name: "Install yaourt"
+  pacman: 
+    name: "yaourt"
+    state: "present"

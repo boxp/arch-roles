@@ -1,0 +1,13 @@
+---
+
+- name: Test are packages presence
+  command: pacman -Q {{item}}
+  register: packages_presence
+  with_items: packages
+  ignore_errors: yes
+  changed_with: "packages_presence|failed"
+
+- name: Install packages
+  command: yaourt -S {{item.item}} --noconfirm
+  when: item|failed
+  with_items: packages_presence.results
