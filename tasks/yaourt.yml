@@ -9,5 +9,6 @@
 
 - name: Install packages
   command: yaourt -S {{item.item}} --noconfirm
+  sudo: no
   when: item|failed
   with_items: packages_presence.results
