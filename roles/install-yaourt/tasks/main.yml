@@ -5,7 +5,7 @@
     dest: "/etc/pacman.conf"
     state: "present"
     line: "{{ item }}"
-  withitems:
+  with_items:
     - "[archlinuxfr]"
     - "SigLevel = Never"
     - "Server = http://repo.archlinux.fr/$arch"
